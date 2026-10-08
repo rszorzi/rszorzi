@@ -1,0 +1,564 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #05050a;
+  color: #f4f4f8;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  height: 100%;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 12px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ---------- phone frame ---------- */
+
+.phone-frame {
+  width: 100%;
+  max-width: 420px;
+  height: 860px;
+  max-height: 92vh;
+  background: #000;
+  border-radius: 42px;
+  padding: 12px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.phone-screen {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: #0b0b12;
+  border-radius: 30px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.install-banner {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 20;
+  background: #fff;
+  color: #111;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- generic screen ---------- */
+
+.screen {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 20px 12px;
+}
+
+.screen-header h1 {
+  margin: 0 0 4px;
+  font-size: 26px;
+}
+
+.screen-header p {
+  margin: 0 0 16px;
+  color: #9a9aab;
+  font-size: 14px;
+}
+
+/* ---------- skill picker ---------- */
+
+.streak-summary {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.streak-chip {
+  background: #17171f;
+  border: 1px solid #26263230;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.skill-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.skill-card {
+  text-align: left;
+  background: #14141c;
+  border: 1.5px solid;
+  border-radius: 18px;
+  padding: 16px;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.15s ease;
+}
+
+.skill-card:active {
+  transform: scale(0.98);
+}
+
+.skill-card-emoji {
+  font-size: 28px;
+}
+
+.skill-card-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.skill-card-tagline {
+  font-size: 13px;
+  color: #9a9aab;
+  margin-bottom: 6px;
+}
+
+.skill-card-progress-track {
+  height: 6px;
+  border-radius: 999px;
+  background: #26262f;
+  overflow: hidden;
+}
+
+.skill-card-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.skill-card-progress-label {
+  font-size: 12px;
+  color: #9a9aab;
+}
+
+/* ---------- bottom nav ---------- */
+
+.bottom-nav {
+  display: flex;
+  border-top: 1px solid #1c1c26;
+  background: #0b0b12;
+  padding: 8px 0 14px;
+}
+
+.nav-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #6f6f80;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 0;
+}
+
+.nav-btn.active {
+  color: #f4f4f8;
+}
+
+.nav-icon {
+  font-size: 20px;
+}
+
+/* ---------- reel feed ---------- */
+
+.reel-feed {
+  flex: 1;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+.reel-feed-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.65), transparent);
+  scroll-snap-align: none;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+}
+
+.reel-feed-title {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.reel-card {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 26px 22px 60px;
+  color: #fff;
+  overflow: hidden;
+}
+
+.reel-card-noise {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.12), transparent 55%);
+  pointer-events: none;
+}
+
+.reel-progress {
+  position: absolute;
+  top: 60px;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.reel-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #fff;
+  border-radius: 999px;
+}
+
+.reel-progress.playing .reel-progress-fill {
+  animation-name: fillProgress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fillProgress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.reel-duration {
+  position: absolute;
+  top: 68px;
+  right: 16px;
+  font-size: 11px;
+  opacity: 0.75;
+  font-variant-numeric: tabular-nums;
+}
+
+.reel-hook {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.85;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.reel-title {
+  font-size: 26px;
+  line-height: 1.25;
+  margin: 0 0 18px;
+  font-weight: 800;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.reel-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reel-points li {
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 14.5px;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: pointIn 0.4s ease forwards;
+}
+
+@keyframes pointIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reel-swipe-hint {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.6;
+  animation: bob 1.8s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* ---------- checkpoint card ---------- */
+
+.checkpoint-card {
+  background: #14141c;
+  justify-content: center;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.checkpoint-badge {
+  align-self: flex-start;
+  background: #ffb020;
+  color: #241800;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.checkpoint-question {
+  font-size: 22px;
+  line-height: 1.35;
+  margin: 6px 0 10px;
+}
+
+.checkpoint-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkpoint-option {
+  background: #1d1d28;
+  border: 1.5px solid #2c2c3a;
+  color: #f4f4f8;
+  border-radius: 12px;
+  padding: 13px 14px;
+  font-size: 15px;
+  text-align: left;
+}
+
+.checkpoint-option.correct {
+  border-color: #3fae7a;
+  background: #123324;
+}
+
+.checkpoint-option.incorrect {
+  border-color: #d85a4c;
+  background: #33161a;
+}
+
+.checkpoint-feedback {
+  margin-top: 6px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #1d1d28;
+}
+
+.checkpoint-feedback.good {
+  border: 1px solid #3fae7a55;
+}
+
+.checkpoint-feedback.bad {
+  border: 1px solid #d85a4c55;
+}
+
+.checkpoint-feedback p {
+  font-size: 13.5px;
+  color: #c4c4d1;
+  margin: 6px 0 0;
+}
+
+.checkpoint-review-note {
+  color: #7f7f92 !important;
+  font-style: italic;
+}
+
+/* ---------- certificate card ---------- */
+
+.certificate-card {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.certificate-card.locked {
+  background: #14141c !important;
+  color: #c4c4d1;
+}
+
+.certificate-emoji {
+  font-size: 46px;
+  margin-bottom: 6px;
+}
+
+.certificate-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+  font-weight: 700;
+}
+
+.certificate-card h2 {
+  font-size: 24px;
+  margin: 4px 0;
+}
+
+.certificate-name {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+.certificate-meta {
+  font-size: 13px;
+  opacity: 0.75;
+  margin-bottom: 14px;
+}
+
+.share-btn {
+  background: #fff;
+  color: #111;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 26px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* ---------- progress screen ---------- */
+
+.stat-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.stat-tile {
+  flex: 1;
+  background: #14141c;
+  border-radius: 14px;
+  padding: 14px 10px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #9a9aab;
+  margin-top: 2px;
+}
+
+.progress-section {
+  margin-bottom: 22px;
+}
+
+.progress-section h2 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.empty-note {
+  color: #7f7f92;
+  font-size: 13px;
+}
+
+.review-list,
+.credential-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.review-list-item,
+.credential-list-item {
+  background: #14141c;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+}
+
+.review-due-badge {
+  background: #ffb020;
+  color: #241800;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.credential-date {
+  color: #7f7f92;
+  font-size: 12px;
+}
